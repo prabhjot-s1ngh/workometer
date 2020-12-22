@@ -11,9 +11,9 @@ com\mcit\pm\model\entities\Employee.class
 com\mcit\pm\model\entities\Task.class
 com\mcit\pm\config\SpringMVCConfigurer.class
 com\mcit\pm\model\DAO\EmployeeDAO.class
+com\mcit\pm\model\entities\EmployeeDetails.class
 com\mcit\pm\config\security\SuccessHandlerLogin.class
 com\mcit\pm\model\DAOImpl\EmployeeDAOImpl.class
-com\mcit\pm\model\entities\MyUserDetails.class
 com\mcit\pm\model\DAOImpl\ProjectDAOImpl.class
 com\mcit\pm\config\WebConfig.class
 com\mcit\pm\model\entities\Project.class
