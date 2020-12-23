@@ -27,7 +27,7 @@ public class HibernateConfig {
     public LocalSessionFactoryBean sessionFactory() throws SQLException, URISyntaxException {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 //        sessionFactory.setDataSource(dataSourceOracle());
-        sessionFactory.setDataSource(dataSource());
+        sessionFactory.setDataSource(getDataSource());
         sessionFactory.setPackagesToScan("com.mcit.pm.model.entities");
         sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;
@@ -53,35 +53,36 @@ public class HibernateConfig {
 
     
     
-     @Bean
-    public BasicDataSource dataSource() throws URISyntaxException {
-        URI dbUri = new URI(System.getenv("DATABASE_URL"));
-
-        String username = dbUri.getUserInfo().split(":")[0];
-        String password = dbUri.getUserInfo().split(":")[1];
-        String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() + "?sslmode=require";
-
-        BasicDataSource basicDataSource = new BasicDataSource();
-        basicDataSource.setUrl(dbUrl);
-        basicDataSource.setUsername(username);
-        basicDataSource.setPassword(password);
-
-        return basicDataSource;
-    }   
-    
-//    @Bean
-//    public DriverManagerDataSource getDataSource() {
+//     @Bean
+//    public BasicDataSource dataSource() throws URISyntaxException {
+//        URI dbUri = new URI(System.getenv("DATABASE_URL"));
 //
-//        DriverManagerDataSource bds = new DriverManagerDataSource();
-//        bds.setDriverClassName("org.postgresql.Driver");
-////        bds.setUrl("postgres://mvoqqhqyedhlyd:5bc25d518e62a9029b7731bbf7deb9f532badc8571f9bca0be29e0bb5842d61a@ec2-34-237-166-54.compute-1.amazonaws.com:5432/dd33m8v27c1o86");
-////        bds.setUsername("mvoqqhqyedhlyd");
-////        bds.setPassword("5bc25d518e62a9029b7731bbf7deb9f532badc8571f9bca0be29e0bb5842d61a");       
+//        String username = dbUri.getUserInfo().split(":")[0];
+//        String password = dbUri.getUserInfo().split(":")[1];
+//        String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() + "?sslmode=require";
+//
+//        BasicDataSource basicDataSource = new BasicDataSource();
+//        basicDataSource.setUrl(dbUrl);
+//        basicDataSource.setUsername(username);
+//        basicDataSource.setPassword(password);
+//
+//        return basicDataSource;
+//    }   
+    
+    @Bean
+    public DriverManagerDataSource getDataSource() {
+
+        DriverManagerDataSource bds = new DriverManagerDataSource();
+        bds.setDriverClassName("org.postgresql.Driver");
+//        bds.setUrl("postgres://mvoqqhqyedhlyd:5bc25d518e62a9029b7731bbf7deb9f532badc8571f9bca0be29e0bb5842d61a@ec2-34-237-166-54.compute-1.amazonaws.com:5432/dd33m8v27c1o86");
+        bds.setUsername("mvoqqhqyedhlyd");
+        bds.setPassword("5bc25d518e62a9029b7731bbf7deb9f532badc8571f9bca0be29e0bb5842d61a");  
+        bds.setUrl("jdbc:postgresql://ec2-34-237-166-54.compute-1.amazonaws.com:5432/dd33m8v27c1o86");        
 //        bds.setUrl("jdbc:postgresql://localhost:5432/admin_pm");
 //        bds.setUsername("postgres");
 //        bds.setPassword("admin");
-//        return bds;
-//    }
+        return bds;
+    }
 
     private final Properties hibernateProperties() {
         Properties hibernateProperties = new Properties();
