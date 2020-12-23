@@ -14,7 +14,10 @@
             h5{
                 color:red;
             }
-            h4, h5{
+            h6{
+                color:darkblue;
+            }            
+            h4, h5,h6{
                 text-align: center;
             }
             .jumbotron{
@@ -33,6 +36,7 @@
         </header>
         </br>
         <h4>LOGIN PAGE</h4></br>
+        <h6> [ Username: 5 ,Password: hello ]</h6>
 
         <div class="d-flex justify-content-center">
             <form action="<c:url value="/login" />" method="post">       

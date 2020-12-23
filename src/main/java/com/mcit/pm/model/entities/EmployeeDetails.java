@@ -58,8 +58,12 @@ public class EmployeeDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        if (employee.getEnabled() == 'Y') {
-            return true;
+        try {
+            if (employee.getEnabled() == 'Y') {
+                return true;
+            }
+        } catch (Exception e){
+            System.out.println("null value in EmployeeDetails Employee.enabled variable.");
         }
         return false;
     }
